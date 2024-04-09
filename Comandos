@@ -1,0 +1,57 @@
+Comandos para enviar 
+
+Pre1: enciende el pin azul y el 15 por el tiempo que se especifique 
+{"Comando":"Pre1","Tiempo":1000}milisegundos
+
+SetWifi: comando especial solo para ambiar el wifi del dispositivo, solo usarce cuando se requiera que se borren las tareas ya que borra todo y solo deja el json de la configuracion delwifi 
+{"Comando":"SetWifi","SSID":"Nombre de red","PASSWORD":"Contraseña de red"}
+
+SetHora: este comando se usa para asignar una hora en el archivo json es decir que sobre escribe el json de configuracion y guarda la hora que sele haya dado en el json de configuracion,se puede usar para almcazenar la ultima hora a la cual se le han programadio los eventos
+{"Comando":"SetHora","SSID":"Nombre de la red","PASSWORD":"Contraseña de la red","hoursR":24,"minutesR":60,"secondsR":60}
+
+GetConfig: este comando se usa para obtener todo el contenido que tiene guardao en la memoria SD el dispositivo 
+{"Comando":"GetConfig"}
+
+Rutina: este comando es para usarce en el momento, es decir en el momento en que se quiera realizar una accion en los pines ya sea leer el estado de un pin, cambiar el estado de un pin, o realizar una lectura analogica de un pin por ejemplo 
+{"Comando":"Rutina","Accion":"HIGHLOWT","Tiempo":5,"Pin":16,"Modo":"OUTPUT"}
+con este comando se puede encender un pin y despues apagar con el tiempo que se le mande en este caso se tiene que dejar e tiempo en segundos 
+{"Comando":"Rutina","Accion":"LOWHIGHT","Tiempo":5,"Pin":16,"Modo":"OUTPUT"} igual que el de arriba pero si esta encendido el pin lo apaga cierto tiempo y despues lo vuelve a encender
+{"Comando":"Rutina","Accion":"HIGH","Tiempo":5,"Pin":16,"Modo":"OUTPUT"} deja encendido el pin 
+{"Comando":"Rutina","Accion":"LOW","Tiempo":5,"Pin":16} apaga el pin que este encendido 
+{"Comando":"Rutina","Accion":"READ","Tiempo":5,"Pin":16,"Modo":"INPUT"} con este comando se recibe el valor que tiene el pin ya sea 1 o 0 dependiendo si este pin esta en HIGH o en LOW  
+{"Comando":"Rutina","Accion":"READ","Tiempo":5,"Pin":16,"Modo":"Analog"} con este comando se recibe el valor analogico del pin A0 que esta en el dispositivo 
+
+UpConfig: este comando se usa para poder enviarle una configuracion al dispositivo todo lo que se envie con este comando se guardara en la SD del dispositivo con esto se pueden asignar tareas en especial con algo que se llama eventos de la siguiente manera 
+{
+  "Comando": "UpConfig",
+  "SSID": "Nombre de la red",
+  "PASSWORD": "Contraseña de la red",
+  "Eventos": [
+    {
+      "hoursR": 11,
+      "minutesR": 5,
+      "secondsR": 0,
+      "Accion": "HIGH",
+      "Pin": 16,
+      "Tiempo":5
+    },
+    {
+      "hoursR": 11,
+      "minutesR": 5,
+      "secondsR": 4,
+      "Accion": "LOW",
+      "Pin": 16,
+      "Tiempo":5
+    },
+    {
+      "hoursR": 11,
+      "minutesR": 5,
+      "secondsR": 8,
+      "Accion": "HIGHLOWT",
+      "Pin": 16,
+      "Tiempo": 1000
+    }
+  ]
+}
+
+con este comando se le puden asiganr tareas y modificar el contenido del json para poder asioganr eventos durane el dia segun la hora y la accion que se requiera realizar el tamaño maximo del buffer que se le puede enviar es 40960 bytes 
