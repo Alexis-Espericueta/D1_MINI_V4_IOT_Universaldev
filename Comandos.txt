@@ -54,4 +54,6 @@ UpConfig: este comando se usa para poder enviarle una configuracion al dispositi
   ]
 }
 
-con este comando se le puden asiganr tareas y modificar el contenido del json para poder asioganr eventos durane el dia segun la hora y la accion que se requiera realizar el tamaño maximo del buffer que se le puede enviar es 40960 bytes 
+con este comando se le puden asiganr tareas y modificar el contenido del json para poder asioganr eventos durane el dia segun la hora y la accion que se requiera realizar el tamaño maximo del buffer que se le puede enviar es 4096 bytes 
+Reboot:Con este comando se reinicia el dispositivo si es que tiene conexion a internet
+{"Comando":"Reboot"}
